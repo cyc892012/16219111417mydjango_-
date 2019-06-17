@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>16219111417 基于startbootstrap-resume-master模板的django网站测试</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Bootstrap-table -->
+    <!--
+    <link href="/static/css/bootstrap-table.css" rel="stylesheet">
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/bootstrap-table.min.js"></script>
+    <script src="/static/js/bootstrap-table-zh-CN.min.js"></script>
+    -->
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
+  <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/resume.min.css" rel="stylesheet">
+
+
+</head>
+
+<body id="page-top">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+      <span class="d-block d-lg-none">16219111417</span>
+      <span class="d-none d-lg-block">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/static/img/myimg.jpg" alt="">
+      </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#about">关于</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#weather">展示一：天气爬取</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#top250">展示二：爬虫实践：TOP250电影数据</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#jdtest">展示三：爬虫实践：京东华为手机数据</a>
+        </li>
+
+          <!--
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#awards">Awards</a>
+        </li>
+        -->
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
+      <div class="w-100">
+        <h1 class="mb-0">16219111417
+          <span class="text-primary">django网站测试</span>
+        </h1>
+        <div class="subheading mb-5">基于startbootstrap-resume-master模板
+        </div>
+        <p class="lead mb-5">今日温州天气：{{weather.weather}}</p>
+        </div>
+    </section>
+
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="weather">
+      <div class="w-100">
+      <h5>展示一：天气爬取</h5>
+          <table class="table table-bordered" >
+    <tr>
+        <th>城市</th>
+        <th>温州</th>
+    </tr>
+    <tr>
+        <td>日期</td>
+        <td>{{weather.date}}</td>
+    </tr>
+    <tr>
+        <td>风级</td>
+        <td>{{weather.win}}</td>
+    </tr>
+    <tr>
+        <td>最低温度</td>
+        <td>{{weather.tmpLow}}</td>
+    </tr>
+    <tr>
+        <td>最高温度</td>
+        <td>{{weather.tmpHigh}}℃</td>
+    </tr>
+    <tr>
+        <td>天气</td>
+        <td>{{weather.weather}}</td>
+    </tr>
+    </table>
+      </div>
+    </section>
+
+    <hr class="m-0">
+      <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="top250">
+      <div class="w-100">
+      <h5>展示二：爬虫实践：TOP250电影数据</h5>
+        <table  class="table table-bordered" >
+    <tr>
+        <th>排名</th>
+        <th>电影名</th>
+    </tr>
+    {% for line in top250 %}
+    <tr>
+        <td>{{line.id}}</td>
+        <td>{{line.m_name}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+
+      </div>
+
+    </section>
+
+  <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="jdtest">
+      <div class="w-100">
+      <h5>展示三：爬虫实践：京东华为手机数据</h5>
+        <table  class="table table-bordered" >
+    <tr>
+        <th>id</th>
+        <th>商品名</th>
+        <th>价格</th>
+        <th>购买链接</th>
+    </tr>
+    {% for line in jdtest %}
+    <tr>
+        <td>{{line.id}}</td>
+        <td>{{line.name}}</td>
+        <td>{{line.price}}</td>
+        <td><a href="{{line.href}}">{{line.href}}</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+
+      </div>
+
+    </section>
+  <!--
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="skills">
+      <div class="w-100">
+
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="interests">
+      <div class="w-100">
+
+      </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
+      <div class="w-100">
+
+      </div>
+    </section>
+-->
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+  <!-- Custom scripts for this template -->
+  <script src="/static/js/resume.min.js"></script>
+
+</body>
+
+</html>
